@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 django = "==3.2"
 psycopg2-binary = "==2.8.6"
+djangorestframework = "==3.12.4"
+django-filter = "*"
 
 [requires]
 python_version = "3.9"
