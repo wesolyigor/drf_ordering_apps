@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: "./Dockerfile"
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    volumes:
+    - .:/code
+    env_file:
+      - config/.env
+    ports:
+    - 8000:8000
+    depends_on:
+      - db
+    networks:
+      - ordering_ads_network
+
+
+
+  db:
+    image: library/postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postresql/data/
+    env_file:
+      - config/.env
+    networks:
+      - ordering_ads_network
+
+
+volumes:
+  postgres_data:
+
+networks:
+  ordering_ads_network:
+    driver: bridge
