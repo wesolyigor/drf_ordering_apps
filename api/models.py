@@ -7,22 +7,22 @@ class Category(models.Model):
     class Meta:
         ordering = ['-ordering']
 
-    name = models.CharField(max_length=100, verbose_name="category_name", blank=False)
+    name = models.CharField(max_length=100, verbose_name="category_name", blank=False, unique=True)
     ordering = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Offer(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
     description = models.TextField(max_length=20000)
     price = models.DecimalField(verbose_name='price', max_digits=6, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
 
 
 @receiver(post_save, sender=Offer)

@@ -19,3 +19,7 @@ config/.env
 env/
 venv/
 ENV/
+
+# Coverage
+.coverage
+htmlcov
