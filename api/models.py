@@ -17,7 +17,7 @@ class Category(models.Model):
 class Offer(models.Model):
     title = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
-    description = models.TextField()
+    description = models.TextField(max_length=20000)
     price = models.DecimalField(verbose_name='price', max_digits=6, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
 
